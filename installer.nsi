@@ -11,8 +11,8 @@ RequestExecutionLevel admin
 
 ; Interface Settings
 !define MUI_ABORTWARNING
-!define MUI_ICON "icons\advertpreneur-256x256.png"
-!define MUI_UNICON "icons\advertpreneur-256x256.png"
+!define MUI_ICON "icons\installer.ico"
+!define MUI_UNICON "icons\installer.ico"
 
 ; Pages
 !insertmacro MUI_PAGE_WELCOME
@@ -39,8 +39,8 @@ Section "WebP Converter" SecMain
     
     ; Create shortcuts
     CreateDirectory "$SMPROGRAMS\WebP Converter"
-    CreateShortcut "$SMPROGRAMS\WebP Converter\WebP Converter.lnk" "$INSTDIR\WebPConverter.exe"
-    CreateShortcut "$DESKTOP\WebP Converter.lnk" "$INSTDIR\WebPConverter.exe"
+    CreateShortcut "$SMPROGRAMS\WebP Converter\WebP Converter.lnk" "$INSTDIR\WebPConverter.exe" "" "$INSTDIR\icons\installer.ico"
+    CreateShortcut "$DESKTOP\WebP Converter.lnk" "$INSTDIR\WebPConverter.exe" "" "$INSTDIR\icons\installer.ico"
     
     ; Write uninstaller
     WriteUninstaller "$INSTDIR\Uninstall.exe"
@@ -51,9 +51,7 @@ Section "WebP Converter" SecMain
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\WebP Converter" \
                      "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
     WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\WebP Converter" \
-                     "DisplayIcon" "$INSTDIR\WebPConverter.exe"
-    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\WebP Converter" \
-                     "Publisher" "Advertpreneur"
+                     "DisplayIcon" "$INSTDIR\icons\installer.ico"
 SectionEnd
 
 Section "Uninstall"
@@ -64,12 +62,13 @@ Section "Uninstall"
     
     ; Remove shortcuts
     Delete "$SMPROGRAMS\WebP Converter\WebP Converter.lnk"
-    RMDir "$SMPROGRAMS\WebP Converter"
     Delete "$DESKTOP\WebP Converter.lnk"
+    RMDir "$SMPROGRAMS\WebP Converter"
     
     ; Remove registry keys
     DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\WebP Converter"
+    DeleteRegKey HKCU "Software\WebP Converter"
     
-    ; Remove install directory
+    ; Remove installation directory
     RMDir "$INSTDIR"
 SectionEnd

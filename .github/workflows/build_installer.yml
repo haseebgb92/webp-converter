@@ -34,7 +34,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pyinstaller==6.11.0
+        pip install pyinstaller==6.11.0 pillow
+    
+    - name: Convert PNG to ICO
+      run: |
+        python -c "from PIL import Image; img = Image.open('icons/advertpreneur-256x256.png'); img.save('icons/installer.ico')"
+      shell: cmd
+    
+    - name: Install NSIS
+      uses: joncloud/makensis-action@v4.1
     
     - name: Build executable
       run: |
@@ -49,6 +57,8 @@ jobs:
         dir
         echo "Dist directory contents:"
         dir dist
+        echo "Icons directory contents:"
+        dir icons
       shell: cmd
     
     - name: Build installer
