@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" fill="white"/>
+    <g transform="translate(106, 156) scale(1.2)">
+        <!-- A letter -->
+        <path d="M0,200 L125,0 L250,200 L200,200 L125,50 L50,200 Z" fill="#FF8C00"/>
+        
+        <!-- D letter -->
+        <path d="M260,0 C340,0 400,60 400,100 C400,140 340,200 260,200 L260,150 C310,150 350,125 350,100 C350,75 310,50 260,50 Z" fill="#0066CC"/>
+    </g>
+</svg>
