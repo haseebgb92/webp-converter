@@ -44,9 +44,24 @@ jobs:
         pyinstaller --clean --noconfirm build_exe.spec
       shell: cmd
     
+    - name: List files before NSIS
+      run: |
+        dir
+        echo "Current directory contents:"
+        dir /s /b
+      shell: cmd
+    
     - name: Build installer
       run: |
-        makensis installer.nsi
+        echo "Current directory: %CD%"
+        echo "NSIS script path: %CD%\installer.nsi"
+        if exist installer.nsi (
+          echo "installer.nsi found"
+          makensis installer.nsi
+        ) else (
+          echo "installer.nsi not found"
+          exit 1
+        )
       shell: cmd
     
     - name: Upload artifact
