@@ -26,6 +26,8 @@ ENV/
 
 # PyInstaller
 *.manifest
+# Don't ignore our specific spec file
+!build_exe.spec
 *.spec
 
 # Installer logs
